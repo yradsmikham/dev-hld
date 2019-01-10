@@ -2,10 +2,10 @@
 
 # Fabrikate
 echo "Downloading Fabrikate..."
-sudo apt-get update
-sudo apt-get install wget
+#sudo apt-get update
+#sudo apt-get install wget
 wget "https://github.com/Microsoft/fabrikate/releases/download/0.1.2/fab-v0.1.2-linux-amd64.zip"
-unzip fab-v0.1.2-linux-amd-64.zip
+unzip fab-v0.1.2-linux-amd64.zip
 
 # Git
 echo "Checking into Github Repo..."
