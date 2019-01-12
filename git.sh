@@ -11,7 +11,12 @@ cd fabrikate/examples/getting-started
 fab install
 fab generate prod
 
-ssh-keygen 
+cd $HOME
+ls
+ssh-keygen -t rsa /.ssh/id_rsa -p ""
+ls
+cd .ssh
+ls
 
 # SSH Key
 
