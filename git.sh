@@ -12,8 +12,10 @@ fab install
 fab generate prod
 
 cd $HOME
+mkdir .ssh
 ls
-ssh-keygen -t rsa /.ssh/id_rsa -N ""
+echo "Generating SSH Key..."
+ssh-keygen -t rsa /.ssh/id_rsa 
 ls
 cd .ssh
 ls
