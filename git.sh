@@ -11,7 +11,7 @@ cd fabrikate/examples/getting-started
 fab install
 fab generate prod
 
-cd $HOME
+cd /home
 mkdir .ssh
 ls
 echo "Generating SSH Key..."
