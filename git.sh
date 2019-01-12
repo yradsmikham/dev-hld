@@ -11,9 +11,7 @@ cd fabrikate/examples/getting-started
 fab install
 fab generate prod
 
-cd $HOME
-ls -a
-ls -ap | egrep "^\..*/$"  
+ssh-keygen 
 
 # SSH Key
 
