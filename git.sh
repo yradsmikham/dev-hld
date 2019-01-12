@@ -13,7 +13,7 @@ fab generate prod
 
 cd $HOME
 ls
-ssh-keygen -t rsa /.ssh/id_rsa -p ""
+ssh-keygen -t rsa /.ssh/id_rsa -N ""
 ls
 cd .ssh
 ls
