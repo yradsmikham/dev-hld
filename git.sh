@@ -18,7 +18,7 @@ ls -a
 echo "Adding Github.com to known_hosts file..."
 ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 echo "Printing content of known_hosts file..."
-cat /.ssh/known_hosts
+cat ~/.ssh/known_hosts
 
 # Login to AZ
 echo "AZ Login"
