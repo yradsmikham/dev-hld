@@ -47,9 +47,6 @@ fab generate prod
 cd /home/vsts/work/1/s/
 
 # Git
-#Set git identity 
-git config user.email "admin@azuredevops.com"
-git config user.name "Automated Account"
 
 echo "Cloning Git Repo..."
 git clone git@github.com:yradsmikham/walmart-k8s
@@ -63,6 +60,11 @@ cp /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/prod/infra/e
 ls /home/vsts/work/1/s/walmart-k8s
 echo "GIT ADD"
 git add *.yaml
+
+#Set git identity 
+git config user.email "admin@azuredevops.com"
+git config user.name "Automated Account"
+
 echo "GIT COMMIT"
 git commit -m "Updated k8s manifest files"
 echo "GIT STATUS" 
