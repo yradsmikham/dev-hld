@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Write your commands here
-echo "Current directory is:" && pwd
-echo "Contents are:" && ls -a
-
 # Create .ssh directory
 echo "mkdir ~/.ssh/"
 mkdir ~/.ssh/
@@ -34,7 +30,6 @@ eval `ssh-agent -s`
 ssh-add
 
 # Tighten security for private key
-#echo "Tigten security..."
 chmod 400 ~/.ssh/id_rsa
 chmod 400 ~/.ssh/id_rsa.pub
 
@@ -50,28 +45,24 @@ fab install
 fab generate prod
 
 cd /home/vsts/work/1/s/
+
 # Git
+#Set git identity 
+git config user.email "admin@azuredevops.com"
+git config user.name "Automated Account"
+
 echo "Cloning Git Repo..."
 git clone git@github.com:yradsmikham/walmart-k8s
-echo "List content of repo..."
-ls -a
 cd walmart-k8s
-echo "Content in destination repo:"
-ls -a
-echo "PATH:"
-pwd
 echo "GIT CHECKOUT MASTER"
 git checkout master
 echo "GIT STATUS"
 git status
-echo "GIT ADD"
 echo "Copy yaml files to repo directory..."
 cp /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/prod/infra/elasticsearch-fluentd-kibana/*.yaml /home/vsts/work/1/s/walmart-k8s
 ls /home/vsts/work/1/s/walmart-k8s
+echo "GIT ADD"
 git add *.yaml
-#Set git identity 
-git config user.email "me@azuredevops.com"
-git config user.name "Automated Account"
 echo "GIT COMMIT"
 git commit -m "Updated k8s manifest files"
 echo "GIT STATUS" 
