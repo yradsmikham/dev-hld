@@ -6,6 +6,11 @@ mkdir ~/.ssh/
 #chmod -R 777 ~/.ssh/
 touch ~/.ssh/known_hosts
 
+echo "VARIABLES"
+echo $appID
+echo $password
+echo $tenant
+
 echo "listing contents in .ssh directory..."
 ls ~/.ssh/
 
