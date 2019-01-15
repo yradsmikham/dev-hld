@@ -25,6 +25,7 @@ echo "AZ Login"
 az login --service-principal -u d7e1651b-568d-474a-bd60-7a2de225a3be -p 45855aa8-463b-4b80-be58-93ed8aeb3ce4 --tenant 72f988bf-86f1-41af-91ab-2d7cd011db47
 
 # Download private and Public key from KeyVault
+echo "Accessing KeyVault..."
 az keyvault secret download --name idarsa --vault-name yradsmik-walmart-k8s --file ~/.ssh/id_rsa
 az keyvault secret download --name idarsapub --vault-name yradsmik-walmart-k8s --file ~/.ssh/id_rsa.pub
 
