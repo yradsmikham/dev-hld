@@ -59,12 +59,17 @@ git clone git@github.com:yradsmikham/walmart-k8s
 echo "List content of repo..."
 ls -a
 cd walmart-k8s
+echo "Content in destination repo:"
+ls -a
+echo "PATH:"
+pwd
 echo "Copy yaml files to repo directory..."
 echo "GIT CHECKOUT MASTER"
 git checkout master
 echo "GIT STATUS"
 git status
 echo "GIT ADD"
+cp fabrikate/examples/getting-started/generated/prod/infra/elasticsearch-fluentd-kibana/*.yaml 
 git add *.yml
 echo "GIT COMMIT"
 git commit -m "Updated k8s manifest files"
