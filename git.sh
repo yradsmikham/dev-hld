@@ -6,11 +6,6 @@ mkdir ~/.ssh/
 #chmod -R 777 ~/.ssh/
 touch ~/.ssh/known_hosts
 
-echo "VARIABLES"
-echo $APP_ID
-echo $PASSWORD
-echo $TENANT
-
 echo "listing contents in .ssh directory..."
 ls ~/.ssh/
 
@@ -22,7 +17,7 @@ cat ~/.ssh/known_hosts
 
 # Login to AZ
 echo "AZ Login"
-az login --service-principal -u d7e1651b-568d-474a-bd60-7a2de225a3be -p 45855aa8-463b-4b80-be58-93ed8aeb3ce4 --tenant 72f988bf-86f1-41af-91ab-2d7cd011db47
+az login --service-principal -u $APP_ID -p $PASSWORD --tenant $TENANT
 
 # Download private and Public key from KeyVault
 echo "Accessing KeyVault..."
