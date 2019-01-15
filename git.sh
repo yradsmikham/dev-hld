@@ -7,9 +7,9 @@ mkdir ~/.ssh/
 touch ~/.ssh/known_hosts
 
 echo "VARIABLES"
-echo $appID
-echo $password
-echo $tenant
+echo $APP_ID
+echo $PASSWORD
+echo $TENANT
 
 echo "listing contents in .ssh directory..."
 ls ~/.ssh/
