@@ -73,7 +73,8 @@ echo "GIT STATUS"
 git status
 echo "GIT ADD"
 cp /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/prod/infra/elasticsearch-fluentd-kibana/*.yaml /home/vsts/work/1/s/walmart-k8s
-git add *.yml
+ls /home/vsts/work/1/s/walmart-k8s
+git add *.yaml
 echo "GIT COMMIT"
 git commit -m "Updated k8s manifest files"
 echo "GIT STATUS" 
