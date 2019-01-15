@@ -66,15 +66,18 @@ echo "Content in destination repo:"
 ls -a
 echo "PATH:"
 pwd
-echo "Copy yaml files to repo directory..."
 echo "GIT CHECKOUT MASTER"
 git checkout master
 echo "GIT STATUS"
 git status
 echo "GIT ADD"
+echo "Copy yaml files to repo directory..."
 cp /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/prod/infra/elasticsearch-fluentd-kibana/*.yaml /home/vsts/work/1/s/walmart-k8s
 ls /home/vsts/work/1/s/walmart-k8s
 git add *.yaml
+#Set git identity 
+git config user.email "me@azuredevops.com"
+git config user.name "Automated Account"
 echo "GIT COMMIT"
 git commit -m "Updated k8s manifest files"
 echo "GIT STATUS" 
