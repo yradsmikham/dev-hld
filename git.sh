@@ -13,6 +13,9 @@ touch ~/.ssh/known_hosts
 # Add GitHub.com to known_hosts file
 ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
+# Login to AZ
+az login --service-principal -u ed08503d-39ee-429a-880d-4c52b8ff543a -p 90d9b715-8b01-488a-8837-c007b670c406 --tenant 72f988bf-86f1-41af-91ab-2d7cd011db47
+
 # Download private and Public key from KeyVault
 az keyvault secret download --name idarsa --vault-name yradsmik-walmart-k8s --file ~/.ssh/id_rsa
 az keyvault secret download --name idarsapub --vault-name yradsmik-walmart-k8s --file ~/.ssh/id_rsa.pub
