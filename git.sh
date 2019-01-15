@@ -35,8 +35,8 @@ ssh-add
 
 # Tighten security for private key
 #echo "Tigten security..."
-#chmod 400 ~/.ssh/id_rsa
-#chmod 400 ~/.ssh/id_rsa.pub
+chmod 400 ~/.ssh/id_rsa
+chmod 400 ~/.ssh/id_rsa.pub
 
 # Fabrikate
 echo "Downloading Fabrikate..."
