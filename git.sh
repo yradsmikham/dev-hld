@@ -34,7 +34,9 @@ eval `ssh-agent -s`
 ssh-add
 
 # Tighten security for private key
+echo "Tigten security..."
 chmod 400 ~/.ssh/id_rsa
+chmod 400 ~/.ssh/id_rsa.pub
 
 # Fabrikate
 echo "Downloading Fabrikate..."
@@ -56,6 +58,8 @@ echo "Cloning Git Repo..."
 git clone git@github.com:yradsmikham/walmart-k8s
 echo "List content of repo..."
 ls -a
+cd walmart-k8s
+echo "Copy yaml files to repo directory..."
 echo "GIT CHECKOUT MASTER"
 git checkout master
 echo "GIT STATUS"
