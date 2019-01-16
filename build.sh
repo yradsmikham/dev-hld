@@ -56,10 +56,10 @@ git checkout master
 echo "GIT STATUS"
 git status
 echo "Copy yaml files to repo directory..."
-cp /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/prod/infra/elasticsearch-fluentd-kibana/*.yaml /home/vsts/work/1/s/walmart-k8s
+cp /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/* /home/vsts/work/1/s/walmart-k8s
 ls /home/vsts/work/1/s/walmart-k8s
 echo "GIT ADD"
-git add *.yaml
+git add *
 
 #Set git identity 
 git config user.email "admin@azuredevops.com"
