@@ -56,7 +56,7 @@ git checkout master
 echo "GIT STATUS"
 git status
 echo "Copy yaml files to repo directory..."
-cp /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/* /home/vsts/work/1/s/walmart-k8s
+cp -r /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/* /home/vsts/work/1/s/walmart-k8s
 ls /home/vsts/work/1/s/walmart-k8s
 echo "GIT ADD"
 git add *
