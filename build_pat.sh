@@ -3,25 +3,40 @@ wget "https://github.com/Microsoft/fabrikate/releases/download/0.1.2/fab-v0.1.2-
 unzip fab-v0.1.2-linux-amd64.zip -d fab
 export PATH=$PATH:/home/vsts/work/1/s/fab
 
-echo "Running Fabrikate..."
+git clone https://github.com/Microsoft/fabrikate
+cd fabrikate/examples/getting-started
 fab install
 fab generate prod
 
-git --version
+
+cd /home/vsts/work/1/s/
 git clone git@github.com:yradsmikham/walmart-k8s
 cd walmart-k8s
 git checkout master
 
-echo "Copying generated files"
+echo "Cloning Git Repo..."
+git clone git@github.com:yradsmikham/walmart-k8s
+cd walmart-k8s
+echo "GIT CHECKOUT MASTER"
+git checkout master
+echo "GIT STATUS"
+git status
+echo "Copy yaml files to repo directory..."
 rm -rf prod/
-cp -r /home/vsts/work/1/s/generated/* .
-echo "git add *"
+cp -r /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/* /home/vsts/work/1/s/walmart-k8s
+ls /home/vsts/work/1/s/walmart-k8s
+echo "GIT ADD"
 git add *
-echo "setup author info"
-git config user.email "me@samiya.ca"
-git config user.name "azure-pipelines[bot]"
-echo "git commit with message"
-git commit --allow-empty -a -m "Updating files after commit"
-git remote set-url origin git@github.com:yradsmikham/walmart-k8s.git
-echo "git push"
+
+#Set git identity 
+git config user.email "admin@azuredevops.com"
+git config user.name "Automated Account"
+
+echo "GIT COMMIT"
+git commit -m "Updated k8s manifest files"
+echo "GIT STATUS" 
+git status
+echo "GIT PUSH"
 git push https://$ACCESS_TOKEN@github.com/yradsmikham/walmart-k8s.git
+echo "GIT STATUS"
+git status
