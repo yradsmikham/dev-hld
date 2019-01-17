@@ -10,13 +10,16 @@ fab generate prod
 
 
 cd /home/vsts/work/1/s/
+echo "GIT CLONE"
 git clone https://github.com/yradsmikham/walmart-k8s.git
 cd walmart-k8s
-git checkout master
 
+echo "GIT CHECKOUT"
+git checkout master
 echo "GIT STATUS"
 git status
 echo "Copy yaml files to repo directory..."
+rm -rf prod/
 cp -r /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/* /home/vsts/work/1/s/walmart-k8s
 ls /home/vsts/work/1/s/walmart-k8s
 echo "GIT ADD"
