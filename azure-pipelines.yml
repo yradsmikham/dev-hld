@@ -17,4 +17,5 @@ steps:
 - task: ShellScript@2
   inputs:
     scriptPath: build_pat.sh
-    accessToken: $ACCESS_TOKEN
+  env:
+   ACCESS_TOKEN: ${ACCESS_TOKEN}
