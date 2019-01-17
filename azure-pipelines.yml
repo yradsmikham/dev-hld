@@ -18,5 +18,3 @@ steps:
   inputs:
     scriptPath: build_pat.sh
     accessToken: $ACCESS_TOKEN
-
-
