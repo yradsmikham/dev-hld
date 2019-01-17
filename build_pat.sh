@@ -36,6 +36,8 @@ echo "GIT COMMIT"
 git commit -m "Updated k8s manifest files"
 echo "GIT STATUS" 
 git status
+echo "GIT PULL" 
+git pull
 echo "GIT PUSH"
 git push https://$ACCESS_TOKEN@github.com/yradsmikham/walmart-k8s.git
 echo "GIT STATUS"
