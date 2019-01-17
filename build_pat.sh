@@ -24,4 +24,4 @@ echo "git commit with message"
 git commit --allow-empty -a -m "Updating files after commit"
 git remote set-url origin git@github.com:yradsmikham/walmart-k8s.git
 echo "git push"
-git push https://$ACCESSTOKEN@github.com/yradsmikham/walmart-k8s.git
+git push https://$ACCESS_TOKEN@github.com/yradsmikham/walmart-k8s.git
