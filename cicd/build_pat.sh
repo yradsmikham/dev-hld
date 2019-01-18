@@ -13,6 +13,8 @@ fab install
 #git clone https://github.com/Microsoft/fabrikate
 #cd fabrikate/examples/getting-started
 fab generate prod
+echo "FAB GENERATE PROD COMPLETED"
+ls -a
 
 cd /home/vsts/work/1/s/
 echo "GIT CLONE"
