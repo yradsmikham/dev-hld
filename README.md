@@ -8,11 +8,11 @@ This repository contains:
 
 ## Aproach
 
-# 1) SSH-key (build_ssh.sh)
+### 1) SSH-key (build_ssh.sh)
 - This approach involves deploying an SSH key to the AKS Manifest Git repo prior to running the Azure Pipeline build.
 - The SSH key (private and public key) is stored as secrets in Azure Key Vault, and in order to access the the Azure Key Vault, a **Service Pricinpal** in Azure needs to be created and configured beforehand.
 
-# 2) Personal Access Tokens (PAT) (build_pat.sh)
+### 2) Personal Access Tokens (PAT) (build_pat.sh)
 - This approach involves generating a PAT in the AKS Manifest Git repo, and adding the PAT as an encrypted variable in the Azure Pipeline build.
 
 ## Configuration
