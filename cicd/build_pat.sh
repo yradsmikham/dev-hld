@@ -9,8 +9,8 @@ unzip fab-v0.1.2-linux-amd64.zip -d fab
 export PATH=$PATH:/home/vsts/work/1/s/fab
 fab install
 
-git clone https://github.com/Microsoft/fabrikate
-cd fabrikate/examples/getting-started
+#git clone https://github.com/Microsoft/fabrikate
+#cd fabrikate/examples/getting-started
 fab generate prod
 
 cd /home/vsts/work/1/s/
@@ -24,7 +24,7 @@ echo "GIT STATUS"
 git status
 echo "Copy yaml files to repo directory..."
 rm -rf prod/
-cp -r /home/vsts/work/1/s/fabrikate/examples/getting-started/generated/* /home/vsts/work/1/s/walmart-k8s
+cp -r prod/ /home/vsts/work/1/s/walmart-k8s
 ls /home/vsts/work/1/s/walmart-k8s
 echo "GIT ADD"
 git add *
