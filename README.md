@@ -6,7 +6,7 @@ This repository contains:
 - Shell scripts used for automation
 - Azure Pipelines yaml file
 
-## Aproach
+## Approach
 
 ### 1) SSH-key (build_ssh.sh)
 - This approach involves deploying an SSH key to the AKS Manifest Git repo prior to running the Azure Pipeline build.
