@@ -27,7 +27,7 @@ echo "GIT STATUS"
 git status
 echo "Copy yaml files to repo directory..."
 rm -rf prod/
-cp -r generated/ /home/vsts/work/1/s/walmart-k8s
+cp -r /home/vsts/work/1/s/generated/* .
 ls /home/vsts/work/1/s/walmart-k8s
 echo "GIT ADD"
 git add *
