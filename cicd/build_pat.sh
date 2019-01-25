@@ -5,10 +5,13 @@ ls -a
 
 cd /home/vsts/work/1/s/
 echo "Downloading Fabrikate..."
-wget "https://github.com/Microsoft/fabrikate/releases/download/0.1.2/fab-v0.1.2-linux-amd64.zip"
+wget "https://github.com/Microsoft/fabrikate/releases/download/0.1.3/fab-v0.1.3-linux-amd64.zip"
 unzip fab-v0.1.2-linux-amd64.zip -d fab
 export PATH=$PATH:/home/vsts/work/1/s/fab
 fab install
+
+# Store the ouput of `curl -s https://api.github.com/repos/Microsoft/fabrikate/tags`
+# If the release number is not provided, then download the latest
 
 #git clone https://github.com/Microsoft/fabrikate
 #cd fabrikate/examples/getting-started
