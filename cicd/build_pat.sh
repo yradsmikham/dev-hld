@@ -1,7 +1,3 @@
-echo "Current directory:"
-pwd
-echo "List content in current directory:"
-ls -a
 cd /home/vsts/work/1/s/
 
 # Store the ouput of `curl -s https://api.github.com/repos/Microsoft/fabrikate/tags`
@@ -9,9 +5,9 @@ cd /home/vsts/work/1/s/
 VERSIONS=$(curl -s https://api.github.com/repos/Microsoft/fabrikate/tags)
 LATEST_RELEASE=$(echo $VERSIONS | grep "name" | head -1)
 LATEST_VERSION=`echo "$LATEST_RELEASE" | cut -d'"' -f 4`
-echo $LATEST_VERSION
 
 echo "Downloading Fabrikate..."
+echo "Latest Fabrikate Version: $LATEST_VERSION"
 #wget "https://github.com/Microsoft/fabrikate/releases/download/0.1.2/fab-v0.1.2-linux-amd64.zip"
 wget "https://github.com/Microsoft/fabrikate/releases/download/$LATEST_VERSION/fab-v-linux-amd64.zip"
 #unzip fab-v0.1.2-linux-amd64.zip -d fab
