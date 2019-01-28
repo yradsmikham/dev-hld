@@ -2,9 +2,14 @@ cd /home/vsts/work/1/s/
 
 # Store the ouput of `curl -s https://api.github.com/repos/Microsoft/fabrikate/tags`
 # If the release number is not provided, then download the latest
-VERSIONS=$(curl -s https://api.github.com/repos/Microsoft/fabrikate/tags)
-LATEST_RELEASE=$(echo $VERSIONS | grep "name" | head -1)
-LATEST_VERSION=`echo "$LATEST_RELEASE" | cut -d'"' -f 4`
+if [ -z "$VERSION" ]
+then
+    VERSIONS=$(curl -s https://api.github.com/repos/Microsoft/fabrikate/tags)
+    LATEST_RELEASE=$(echo $VERSIONS | grep "name" | head -1)
+    LATEST_VERSION=`echo "$LATEST_RELEASE" | cut -d'"' -f 4`
+else
+    echo "Fabrikate Version: $VERSION"
+fi
 
 echo "Downloading Fabrikate..."
 echo "Latest Fabrikate Version: $LATEST_VERSION"
