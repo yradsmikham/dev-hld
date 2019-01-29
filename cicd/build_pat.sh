@@ -12,14 +12,10 @@ fi
 
 echo "RUN HELM INIT"
 helm init
-helm dependency update
-echo "HELM REMOVE INCUBATOR"
-helm repo remove incubator
 echo "HELM ADD INCUBATOR"
 helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
 echo "HELM DEPENDENCY UPDATE"
 helm dependency update
-
 
 echo "Downloading Fabrikate..."
 echo "Latest Fabrikate Version: $LATEST_VERSION"
