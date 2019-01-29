@@ -10,6 +10,11 @@
             "name": "prometheus-grafana",
             "source": "https://github.com/timfpark/fabrikate-prometheus-grafana",
             "method": "git"
+        },
+        {
+            "name": "fabrikate-jaeger",
+            "source": "https://github.com/bnookala/fabrikate-jaeger",
+            "method": "git"
         }
     ]
 }

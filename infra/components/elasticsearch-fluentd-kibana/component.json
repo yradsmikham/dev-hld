@@ -26,12 +26,6 @@
             "generator": "helm",
             "repo": "https://github.com/helm/charts",
             "path": "stable/kibana"
-        },
-        {
-            "name": "jaeger",
-            "generator": "helm",
-            "repo": "https://github.com/helm/charts",
-            "path": "incubator/jaeger"
         }
     ]
 }
