@@ -24,8 +24,8 @@ ls -a
 cd /home/vsts/work/1/s/
 echo "GIT CLONE"
 git clone $AKS_MANIFEST_REPO_URL # Example: https://github.com/yradsmikham/walmart-k8s.git
-git clone https://github.com/yradsmikham/walmart-k8s.git
-url = https://github.com/yradsmikham/walmart-k8s.git
+git clone git@github.com:yradsmikham/walmart-k8s.git
+url = git@github.com:yradsmikham/walmart-k8s.git
 basename=$(basename $url)
 repo_name=${basename%.*}
 cd repo_name
