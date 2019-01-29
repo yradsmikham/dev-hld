@@ -31,7 +31,9 @@ ls -a
 #git clone https://github.com/yradsmikham/walmart-k8s.git
 repo_url=https://github.com/$AKS_MANIFEST_REPO.git
 repo=${repo_url##*/}
+echo "REPO:$repo"
 repo_name=${repo%.*}
+echo "REPO_NAME:$repo_name"
 cd repo_name
 
 echo "GIT CHECKOUT"
