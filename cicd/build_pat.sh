@@ -14,9 +14,9 @@ fi
 echo "Downloading Fabrikate..."
 echo "Latest Fabrikate Version: $LATEST_VERSION"
 #wget "https://github.com/Microsoft/fabrikate/releases/download/0.1.2/fab-v0.1.2-linux-amd64.zip"
-wget "https://github.com/Microsoft/fabrikate/releases/download/$LATEST_VERSION/fab-v-linux-amd64.zip"
+wget "https://github.com/Microsoft/fabrikate/releases/download/$LATEST_VERSION/fab-v$VERSION-linux-amd64.zip"
 #unzip fab-v0.1.2-linux-amd64.zip -d fab
-unzip fab-v-linux-amd64.zip -d fab
+unzip fab-v$VERSION-linux-amd64.zip -d fab
 export PATH=$PATH:/home/vsts/work/1/s/fab
 fab install
 
