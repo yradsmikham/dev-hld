@@ -17,6 +17,9 @@ unzip fab-v$LATEST_VERSION-linux-amd64.zip -d fab
 export PATH=$PATH:/home/vsts/work/1/s/fab
 fab install
 
+echo "RUN HELM"
+helm dependency update
+
 fab generate prod
 echo "FAB GENERATE PROD COMPLETED"
 ls -a
