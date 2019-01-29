@@ -10,7 +10,8 @@ else
     echo "Fabrikate Version: $VERSION"
 fi
 
-echo "RUN HELM"
+echo "RUN HELM INIT"
+helm init
 helm dependency update
 echo "HELM REMOVE INCUBATOR"
 helm repo remove incubator
