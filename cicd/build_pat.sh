@@ -34,7 +34,7 @@ repo=${repo_url##*/}
 echo "REPO:$repo"
 repo_name=${repo%.*}
 echo "REPO_NAME:$repo_name"
-cd repo_name
+cd $repo_name
 
 echo "GIT CHECKOUT"
 git checkout master
