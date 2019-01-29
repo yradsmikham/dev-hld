@@ -23,11 +23,11 @@ ls -a
 
 cd /home/vsts/work/1/s/
 echo "GIT CLONE"
-git clone $AKS_MANIFEST_REPO_URL # Example: https://github.com/yradsmikham/walmart-k8s.git
-git clone git@github.com:yradsmikham/walmart-k8s.git
-url = git@github.com:yradsmikham/walmart-k8s.git
-basename=$(basename $url)
-repo_name=${basename%.*}
+git clone https://github.com/$AKS_MANIFEST_REPO.git
+#git clone https://github.com/yradsmikham/walmart-k8s.git
+repo_url=https://github.com/$AKS_MANIFEST_REPO.git
+repo=${repo_url##*/}
+repo_name=${repo%.*}
 cd repo_name
 
 echo "GIT CHECKOUT"
@@ -37,7 +37,7 @@ git status
 echo "Copy yaml files to repo directory..."
 rm -rf prod/
 cp -r /home/vsts/work/1/s/generated/* .
-ls /home/vsts/work/1/s/walmart-k8s
+ls /home/vsts/work/1/s/$repo_name
 echo "GIT ADD"
 git add *
 
@@ -52,6 +52,6 @@ git status
 echo "GIT PULL" 
 git pull
 echo "GIT PUSH"
-git push https://$ACCESS_TOKEN@github.com/yradsmikham/walmart-k8s.git
+git push https://$ACCESS_TOKEN@github.com/$AKS_MANIFEST_REPO.git
 echo "GIT STATUS"
 git status
