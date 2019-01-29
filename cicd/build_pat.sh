@@ -22,8 +22,12 @@ echo "FAB GENERATE PROD COMPLETED"
 ls -a
 
 cd /home/vsts/work/1/s/
+echo "PATH"
+pwd
 echo "GIT CLONE"
 git clone https://github.com/$AKS_MANIFEST_REPO.git
+echo "list content"
+ls -a
 #git clone https://github.com/yradsmikham/walmart-k8s.git
 repo_url=https://github.com/$AKS_MANIFEST_REPO.git
 repo=${repo_url##*/}
