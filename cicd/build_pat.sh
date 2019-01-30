@@ -1,3 +1,5 @@
+echo "HOME DIRECTORY: $HOME"
+
 cd /home/vsts/work/1/s/
 
 # If the version number is not provided, then download the latest
