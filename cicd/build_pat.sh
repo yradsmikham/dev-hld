@@ -1,5 +1,6 @@
 pwd
-
+cd ..
+cp -r * $HOME/
 echo "HOME DIRECTORY: $HOME"
 
 cd $HOME
