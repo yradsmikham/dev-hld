@@ -105,12 +105,18 @@ function git_push() {
 }
 
 # Run functions
-helm_init
-get_fab_version
-download_fab
-fab_generate
-git_connect
-git_commit
-git_push
+function main() {
+    helm_init
+    get_fab_version
+    download_fab
+    fab_generate
+    git_connect
+    git_commit
+    git_push
+}
+
+if [ "${1}" != "--source-only" ]; then
+    main "${@}"
+fi
 
 echo "COMPLETE"
