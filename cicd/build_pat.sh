@@ -1,5 +1,7 @@
-cd .. && cp -r * $HOME/
-cd $HOME
+function copy_files() {
+    cd .. && cp -r * $HOME/
+    cd $HOME
+}
 
 # Initialize Helm
 function helm_init() {
@@ -23,18 +25,19 @@ function get_fab_version() {
     then
         VERSIONS=$(curl -s https://api.github.com/repos/Microsoft/fabrikate/tags)
         LATEST_RELEASE=$(echo $VERSIONS | grep "name" | head -1)
-        LATEST_VERSION=`echo "$LATEST_RELEASE" | cut -d'"' -f 4`
+        VERSION_TO_DOWNLOAD=`echo "$LATEST_RELEASE" | cut -d'"' -f 4`
     else
         echo "Fabrikate Version: $VERSION"
+        VERSION_TO_DOWNLOAD=$VERSION
     fi
 }
 
 # Download Fabrikate and install
 function download_fab() {
     echo "DOWNLOADING FABRIKATE..."
-    echo "Latest Fabrikate Version: $LATEST_VERSION"
-    wget "https://github.com/Microsoft/fabrikate/releases/download/$LATEST_VERSION/fab-v$LATEST_VERSION-linux-amd64.zip"
-    unzip fab-v$LATEST_VERSION-linux-amd64.zip -d fab
+    echo "Latest Fabrikate Version: $VERSION_TO_DOWNLOAD"
+    wget "https://github.com/Microsoft/fabrikate/releases/download/$VERSION_TO_DOWNLOAD/fab-v$VERSION_TO_DOWNLOAD-linux-amd64.zip"
+    unzip fab-v$VERSION_TO_DOWNLOAD-linux-amd64.zip -d fab
     export PATH=$PATH:$HOME/fab
     fab install
     echo "FAB INSTALL COMPLETED"
@@ -57,10 +60,9 @@ function fab_generate() {
     fi  
 }
 
-cd $HOME
-
 # Authenticate with Git
 function git_connect() {
+    cd $HOME
     echo "GIT CLONE"
     git clone https://github.com/$AKS_MANIFEST_REPO.git
     repo_url=https://github.com/$AKS_MANIFEST_REPO.git
@@ -106,6 +108,7 @@ function git_push() {
 
 # Run functions
 function main() {
+    copy_files
     helm_init
     get_fab_version
     download_fab
@@ -118,5 +121,3 @@ function main() {
 if [ "${1}" != "--source-only" ]; then
     main "${@}"
 fi
-
-echo "COMPLETE"
