@@ -1,6 +1,6 @@
 echo "HOME DIRECTORY: $HOME"
 
-cd /home/vsts/work/1/s/
+cd $HOME
 
 # If the version number is not provided, then download the latest
 if [ -z "$VERSION" ]
@@ -15,7 +15,7 @@ fi
 echo "RUN HELM INIT"
 helm init
 echo "HELM ADD INCUBATOR"
-if [ -z "$HELM_CHART_REPO"] || [ -z "$HELM_CHART_REPO_URL" ];
+if [ -z "$HELM_CHART_REPO" ] || [ -z "$HELM_CHART_REPO_URL" ];
 then
     echo "Using DEFAULT helm repo..."
     helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
@@ -28,14 +28,14 @@ echo "Downloading Fabrikate..."
 echo "Latest Fabrikate Version: $LATEST_VERSION"
 wget "https://github.com/Microsoft/fabrikate/releases/download/$LATEST_VERSION/fab-v$LATEST_VERSION-linux-amd64.zip"
 unzip fab-v$LATEST_VERSION-linux-amd64.zip -d fab
-export PATH=$PATH:/home/vsts/work/1/s/fab
+export PATH=$PATH:$HOME/fab
 fab install
 
 fab generate prod
 echo "FAB GENERATE PROD COMPLETED"
 ls -a
 
-cd /home/vsts/work/1/s/
+cd $HOME
 echo "PATH"
 pwd
 echo "GIT CLONE"
@@ -56,8 +56,8 @@ echo "GIT STATUS"
 git status
 echo "Copy yaml files to repo directory..."
 rm -rf prod/
-cp -r /home/vsts/work/1/s/generated/* .
-ls /home/vsts/work/1/s/$repo_name
+cp -r $HOME/generated/* .
+ls $HOME/$repo_name
 echo "GIT ADD"
 git add *
 
