@@ -1,3 +1,5 @@
+pwd
+
 echo "HOME DIRECTORY: $HOME"
 
 cd $HOME
@@ -28,6 +30,7 @@ echo "Downloading Fabrikate..."
 echo "Latest Fabrikate Version: $LATEST_VERSION"
 wget "https://github.com/Microsoft/fabrikate/releases/download/$LATEST_VERSION/fab-v$LATEST_VERSION-linux-amd64.zip"
 unzip fab-v$LATEST_VERSION-linux-amd64.zip -d fab
+ls -a
 export PATH=$PATH:$HOME/fab
 fab install
 
