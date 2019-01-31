@@ -1,8 +1,4 @@
-pwd
-cd ..
-cp -r * $HOME/
-echo "HOME DIRECTORY: $HOME"
-
+cd .. && cp -r * $HOME/
 cd $HOME
 
 # If the version number is not provided, then download the latest
@@ -31,7 +27,6 @@ echo "Downloading Fabrikate..."
 echo "Latest Fabrikate Version: $LATEST_VERSION"
 wget "https://github.com/Microsoft/fabrikate/releases/download/$LATEST_VERSION/fab-v$LATEST_VERSION-linux-amd64.zip"
 unzip fab-v$LATEST_VERSION-linux-amd64.zip -d fab
-ls -a
 export PATH=$PATH:$HOME/fab
 fab install
 
@@ -39,16 +34,23 @@ fab generate prod
 echo "FAB GENERATE PROD COMPLETED"
 ls -a
 
+# If generated folder is empty, quit
+# In the case that all components are removed from the source hld, 
+# generated folder should still not be empty
+if find "/home/vsts/work/1/s/generated" -mindepth 1 -print -quit 2>/dev/null | grep -q .; then
+    echo "Manifest files have been generated"
+else
+    echo "Manifest files could not be generated, quitting"
+    exit 1
+fi
+
 cd $HOME
-echo "PATH"
-pwd
 echo "GIT CLONE"
 git clone https://github.com/$AKS_MANIFEST_REPO.git
-echo "list content"
-ls -a
-#git clone https://github.com/yradsmikham/walmart-k8s.git
 repo_url=https://github.com/$AKS_MANIFEST_REPO.git
 repo=${repo_url##*/}
+
+# Extract repo name from url
 echo "REPO:$repo"
 repo_name=${repo%.*}
 echo "REPO_NAME:$repo_name"
@@ -70,7 +72,7 @@ git config user.email "admin@azuredevops.com"
 git config user.name "Automated Account"
 
 echo "GIT COMMIT"
-git commit -m "Updated k8s manifest files"
+git commit -m "Updated k8s manifest files post commit: $COMMIT_MESSAGE"
 echo "GIT STATUS" 
 git status
 echo "GIT PULL" 
