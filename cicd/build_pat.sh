@@ -11,7 +11,7 @@ function helm_init() {
         echo "Using DEFAULT helm repo..."
         helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
     else
-        echo "Using DEFINED help repo..."
+        echo "Using DEFINED helm repo..."
         helm repo add $HELM_CHART_REPO $HELM_CHART_REPO_URL
     fi
 }
@@ -50,9 +50,9 @@ function fab_generate() {
     # In the case that all components are removed from the source hld, 
     # generated folder should still not be empty
     if find "$HOME/generated" -mindepth 1 -print -quit 2>/dev/null | grep -q .; then
-        echo "Manifest files have been generated"
+        echo "Manifest files have been generated."
     else
-        echo "Manifest files could not be generated, quitting"
+        echo "Manifest files could not be generated, quitting..."
         exit 1
     fi  
 }
@@ -66,9 +66,7 @@ function git_connect() {
     repo=${repo_url##*/}
 
     # Extract repo name from url
-    echo "REPO:$repo"
     repo_name=${repo%.*}
-    echo "REPO_NAME:$repo_name"
     cd $repo_name
 }
 
@@ -77,7 +75,7 @@ function git_commit() {
     git checkout master
     echo "GIT STATUS"
     git status
-    echo "Copy yaml files to repo directory..."
+    echo "COPY YAML FILES TO REPO DIRECTORY..."
     rm -rf prod/
     cp -r $HOME/generated/* .
     ls $HOME/$repo_name
