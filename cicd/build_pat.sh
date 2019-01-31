@@ -58,6 +58,7 @@ function fab_generate() {
 }
 
 cd $HOME
+
 # Authenticate with Git
 function git_connect() {
     echo "GIT CLONE"
@@ -70,6 +71,7 @@ function git_connect() {
     cd $repo_name
 }
 
+# Git commit
 function git_commit() {
     echo "GIT CHECKOUT"
     git checkout master
@@ -94,6 +96,7 @@ function git_commit() {
     git pull
 }
 
+# Perform a Git push
 function git_push() {
     echo "GIT PUSH"
     git push https://$ACCESS_TOKEN@github.com/$AKS_MANIFEST_REPO.git
@@ -101,6 +104,7 @@ function git_push() {
     git status
 }
 
+# Run functions
 helm_init
 get_fab_version
 download_fab
