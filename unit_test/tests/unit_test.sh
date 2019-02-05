@@ -78,6 +78,7 @@ testGitConnection() {
     else    
         assertTrue 1
     fi
+    
     # Performs a Git Pull
     echo "GIT PULL" 
     cmd_2="git pull"
