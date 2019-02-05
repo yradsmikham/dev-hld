@@ -1,16 +1,16 @@
 #! /bin/sh
 
 . ../../cicd/build_pat.sh --source-only
+. ./environment.properties
 
 oneTimeSetUp() {
     # Configuring environment variables or at least defaults exist
-    VERSION=0.2.0
-    HELM_CHART_REPO=incubator
-    HELM_CHART_REPO_URL=https://kubernetes-charts-incubator.storage.googleapis.com/
-    AKS_MANIFEST_REPO=yradsmikham/walmart-k8s
-    COMMIT_MESSAGE=Test
+    VERSION=$VERSION
+    HELM_CHART_REPO=$HELM_CHART_REPO
+    HELM_CHART_REPO_URL=$HELM_CHART_REPO_URL
+    AKS_MANIFEST_REPO=$AKS_MANIFEST_REPO
     VERSION_TO_DOWNLOAD=$VERSION
-    PAT=6b23530756469d3306186dd6827378e9186da10a
+    PAT=$PAT
 }
 
 testHelmInit() {
@@ -96,6 +96,7 @@ testGitConnection() {
     cd $repo_name
 }
 
+# Tear down temporary resources
 oneTimeTearDown() {
     rm -rf fab*
     rm -rf $HOME/fab*
