@@ -32,25 +32,39 @@ function get_fab_version() {
     fi
 }
 
+# Obtain OS to download the appropriate version of Fabrikate
+function get_os() {
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        eval "$1='linux'"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        eval "$1='darwin'"
+    elif [[ "$OSTYPE" == "msys" ]]; then
+        eval "$1='windows'"
+    else
+        eval "$1='linux'"
+    fi
+}
+
 # Download Fabrikate
 function download_fab() {
     echo "DOWNLOADING FABRIKATE..."
     echo "Latest Fabrikate Version: $VERSION_TO_DOWNLOAD"
-    fab_wget=$(wget -SO- "https://github.com/Microsoft/fabrikate/releases/download/$VERSION_TO_DOWNLOAD/fab-v$VERSION_TO_DOWNLOAD-darwin-amd64.zip" 2>&1 | egrep -i "302")
+    os=''
+    get_os os
+    fab_wget=$(wget -SO- "https://github.com/Microsoft/fabrikate/releases/download/$VERSION_TO_DOWNLOAD/fab-v$VERSION_TO_DOWNLOAD-$os-amd64.zip" 2>&1 | egrep -i "302")
     if [[ $fab_wget == *"302 Found"* ]]; then
        echo "Fabrikate $VERSION_TO_DOWNLOAD downloaded successfully."
     else
         echo "There was an error when downloading Fabrikate. Please check version number and try again."
     fi
-    wget "https://github.com/Microsoft/fabrikate/releases/download/$VERSION_TO_DOWNLOAD/fab-v$VERSION_TO_DOWNLOAD-darwin-amd64.zip"
-    unzip fab-v$VERSION_TO_DOWNLOAD-darwin-amd64.zip -d fab
+    wget "https://github.com/Microsoft/fabrikate/releases/download/$VERSION_TO_DOWNLOAD/fab-v$VERSION_TO_DOWNLOAD-$os-amd64.zip"
+    unzip fab-v$VERSION_TO_DOWNLOAD-$os-amd64.zip -d fab
 }
 
 # Install Fabrikate
 function install_fab() {
     export PATH=$PATH:$HOME/fab
-    fab_install=$(fab install)
-    echo $fab_install
+    fab install
     echo "FAB INSTALL COMPLETED"
 }
 
@@ -117,19 +131,34 @@ function git_push() {
     git status
 }
 
-# Run functions
-function main() {
+function unit_test() {
+    echo "Sourcing for unit test..."
+}
+
+function verify() {
+    echo "Starting verification"
     copy_files
     helm_init
     get_fab_version
     download_fab
     install_fab
     fab_generate
+}
+
+# Run functions
+function verify_and_push() {
+    verify
+    echo "Verification complete, push to yaml repo"
     git_connect
     git_commit
     git_push
 }
 
-if [ "${1}" != "--source-only" ]; then
-    main "${@}"
+echo "argument is ${1}"
+if [ "${1}" == "--verify-only" ]; then
+    verify
+elif [ "${1}" == "--source-only" ]; then
+    unit_test
+else
+    verify_and_push
 fi
