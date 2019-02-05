@@ -27,7 +27,14 @@ testFabDownload() {
     cd $HOME
 
     # Download Fabrikate example 
-    git clone https://github.com/Microsoft/fabrikate 
+    cmd=" git clone https://github.com/Microsoft/fabrikate "
+    $cmd
+    git_clone_status=$?
+    if [ $git_clone_status == 0 ]; then
+        assertTrue 0
+    else    
+        assertTrue 1
+    fi
 
     # If Fab install successfully, then assert Pass (0)
     result_3=$(download_fab)
@@ -78,7 +85,7 @@ testGitConnection() {
     else    
         assertTrue 1
     fi
-    
+
     # Performs a Git Pull
     echo "GIT PULL" 
     cmd_2="git pull"
