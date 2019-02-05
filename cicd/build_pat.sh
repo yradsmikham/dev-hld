@@ -32,14 +32,25 @@ function get_fab_version() {
     fi
 }
 
-# Download Fabrikate and install
+# Download Fabrikate
 function download_fab() {
     echo "DOWNLOADING FABRIKATE..."
     echo "Latest Fabrikate Version: $VERSION_TO_DOWNLOAD"
-    wget "https://github.com/Microsoft/fabrikate/releases/download/$VERSION_TO_DOWNLOAD/fab-v$VERSION_TO_DOWNLOAD-linux-amd64.zip"
-    unzip fab-v$VERSION_TO_DOWNLOAD-linux-amd64.zip -d fab
+    fab_wget=$(wget -SO- "https://github.com/Microsoft/fabrikate/releases/download/$VERSION_TO_DOWNLOAD/fab-v$VERSION_TO_DOWNLOAD-darwin-amd64.zip" 2>&1 | egrep -i "302")
+    if [[ $fab_wget == *"302 Found"* ]]; then
+       echo "Fabrikate $VERSION_TO_DOWNLOAD downloaded successfully."
+    else
+        echo "There was an error when downloading Fabrikate. Please check version number and try again."
+    fi
+    wget "https://github.com/Microsoft/fabrikate/releases/download/$VERSION_TO_DOWNLOAD/fab-v$VERSION_TO_DOWNLOAD-darwin-amd64.zip"
+    unzip fab-v$VERSION_TO_DOWNLOAD-darwin-amd64.zip -d fab
+}
+
+# Install Fabrikate
+function install_fab() {
     export PATH=$PATH:$HOME/fab
-    fab install
+    fab_install=$(fab install)
+    echo $fab_install
     echo "FAB INSTALL COMPLETED"
 }
 
@@ -112,6 +123,7 @@ function main() {
     helm_init
     get_fab_version
     download_fab
+    install_fab
     fab_generate
     git_connect
     git_commit
