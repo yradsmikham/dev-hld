@@ -7,3 +7,4 @@ sshkey.pub
 .terraform*
 *tfstate*
 infra/generated/*
+infra/components/*
