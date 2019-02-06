@@ -1,5 +1,5 @@
 # Unit Testing
-A unit test framework for shell scripts that relies on [shUnit2](https://github.com/kward/shunit2). The unit test will perform checks to ensure various components of `build_pat.sh` runs as expected. 
+A unit test framework for shell scripts that relies on [shUnit2](https://github.com/kward/shunit2). The unit test will perform checks to ensure various components of `build.sh` runs as expected. 
 
 ## Prerequisites
 
@@ -10,6 +10,8 @@ This unit test makes the following assumptions:
 
 ## Instructions
 
-1. Clone the repository.
-2. Provide values to environment variables in `environment.properties`.
-3. In terrminal, navigate to  `../unit_test/tests` directory and run `./unit_test.sh`
+1. Clone this repository.
+2. `cd gitops/azure-devops/unit_test/`
+3. Run `git clone https://github.com/kward/shunit2.git`
+4. Provide values to environment variables in `environment.properties`.
+5. Run `./unit_test.sh`
