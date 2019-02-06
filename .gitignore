@@ -1,8 +1,7 @@
 .DS_Store
 service_principal.json
 install_terraform.sh
-var.tf
-main.tf
+*.tf
 sshkey
 sshkey.pub
 .terraform*
