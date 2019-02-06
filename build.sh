@@ -1,5 +1,5 @@
 function copy_files() {
-    cd .. && cp -r * $HOME/
+    cp -r * $HOME/
     cd $HOME
 }
 
