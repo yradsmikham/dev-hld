@@ -1,6 +1,6 @@
 #! /bin/sh
 
-. ../../cicd/build_pat.sh --source-only
+. ../build.sh --source-only
 . ./environment.properties
 
 oneTimeSetUp() {
