@@ -106,7 +106,6 @@ function git_commit() {
     echo "COPY YAML FILES TO REPO DIRECTORY..."
     rm -rf prod/
     cp -r $HOME/generated/* .
-    ls $HOME/$repo_name
     echo "GIT ADD"
     git add *
 
