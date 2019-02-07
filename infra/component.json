@@ -2,8 +2,8 @@
     "name": "cloud-native-infra",
     "subcomponents": [
         {
-            "name": "fabrikate-cloud-native",
-            "source": "https://github.com/timfpark/fabrikate-cloud-native",
+            "name": "elasticsearch-fluentd-kibana",
+            "source": "https://github.com/timfpark/fabrikate-elasticsearch-fluentd-kibana",
             "method": "git"
         }
     ]
