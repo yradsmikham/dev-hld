@@ -5,9 +5,9 @@ function copy_files() {
 
 # Initialize Helm
 function helm_init() {
-    echo "RUN HELM INIT"
+    echo "---------------------------------------RUN HELM INIT----------------------------------------"
     helm init
-    echo "HELM ADD INCUBATOR"
+    echo "-------------------------------------HELM ADD INCUBATOR-------------------------------------"
     if [ -z "$HELM_CHART_REPO" ] || [ -z "$HELM_CHART_REPO_URL" ];
     then
         echo "Using DEFAULT helm repo..."
@@ -47,7 +47,7 @@ function get_os() {
 
 # Download Fabrikate
 function download_fab() {
-    echo "DOWNLOADING FABRIKATE..."
+    echo "-------------------------------------DOWNLOAD FABRIKATE-------------------------------------"
     echo "Latest Fabrikate Version: $VERSION_TO_DOWNLOAD"
     os=''
     get_os os
@@ -65,13 +65,13 @@ function download_fab() {
 function install_fab() {
     export PATH=$PATH:$HOME/fab
     fab install
-    echo "FAB INSTALL COMPLETED"
+    echo "-----------------------------------FAB INSTALL COMPLETED------------------------------------"
 }
 
 # Run fab generate
 function fab_generate() {
     fab generate prod
-    echo "FAB GENERATE COMPLETED"
+    echo "-----------------------------------FAB GENERATE COMPLETED-----------------------------------"
 
     # If generated folder is empty, quit
     # In the case that all components are removed from the source hld, 
@@ -87,7 +87,7 @@ function fab_generate() {
 # Authenticate with Git
 function git_connect() {
     cd $HOME
-    echo "GIT CLONE"
+    echo "-----------------------------------------GIT CLONE------------------------------------------"
     git clone https://github.com/$AKS_MANIFEST_REPO.git
     repo_url=https://github.com/$AKS_MANIFEST_REPO.git
     repo=${repo_url##*/}
@@ -99,33 +99,33 @@ function git_connect() {
 
 # Git commit
 function git_commit() {
-    echo "GIT CHECKOUT"
+    echo "----------------------------------------GIT CHECKOUT----------------------------------------"
     git checkout master
-    echo "GIT STATUS"
+    echo "-----------------------------------------GIT STATUS-----------------------------------------"
     git status
     echo "COPY YAML FILES TO REPO DIRECTORY..."
     rm -rf prod/
     cp -r $HOME/generated/* .
-    echo "GIT ADD"
+    echo "-------------------------------------------GIT ADD------------------------------------------"
     git add *
 
     #Set git identity 
     git config user.email "admin@azuredevops.com"
     git config user.name "Automated Account"
 
-    echo "GIT COMMIT"
+    echo "-----------------------------------------GIT COMMIT-----------------------------------------"
     git commit -m "Updated k8s manifest files post commit: $COMMIT_MESSAGE"
-    echo "GIT STATUS" 
+    echo "-----------------------------------------GIT STATUS-----------------------------------------" 
     git status
-    echo "GIT PULL" 
+    echo "-----------------------------------------GIT PULL-------------------------------------------" 
     git pull
 }
 
 # Perform a Git push
 function git_push() {
-    echo "GIT PUSH"
+    echo "------------------------------------------GIT PUSH------------------------------------------"
     git push https://$ACCESS_TOKEN@github.com/$AKS_MANIFEST_REPO.git
-    echo "GIT STATUS"
+    echo "-----------------------------------------GIT STATUS-----------------------------------------"
     git status
 }
 
