@@ -19,4 +19,3 @@ steps:
     scriptPath: build.sh
   env:
    ACCESS_TOKEN: $(ACCESS_TOKEN)
-   VERSION: 0.1.9
