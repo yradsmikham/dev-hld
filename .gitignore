@@ -8,3 +8,4 @@ sshkey.pub
 *tfstate*
 infra/generated/*
 infra/components/*
+shunit2
