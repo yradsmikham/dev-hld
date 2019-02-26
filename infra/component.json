@@ -13,7 +13,7 @@
         },
         {
             "name": "fabrikate-jaeger",
-            "source": "https://github.com/bnookala/fabrikate-jaeger",
+            "source": "https://github.com/yradsmikham/fabrikate-jaeger",
             "method": "git"
         }
     ]
