@@ -166,7 +166,7 @@ function unit_test() {
 function verify() {
     echo "Starting verification"
     init
-    #helm_init
+    ##helm_init
     get_fab_version
     download_fab
     install_fab
