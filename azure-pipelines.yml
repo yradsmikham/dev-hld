@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
@@ -14,8 +9,27 @@ steps:
   persistCredentials: true
   clean: true
 
+- bash: |
+    curl $BEDROCK_BUILD_SCRIPT > build.sh
+    chmod +x ./build.sh
+  displayName: Download Bedrock orchestration script
+  env:
+    BEDROCK_BUILD_SCRIPT: https://raw.githubusercontent.com/Microsoft/bedrock/master/gitops/azure-devops/build.sh
+
 - task: ShellScript@2
+  displayName: Validate fabrikate definitions
   inputs:
     scriptPath: build.sh
+  condition: eq(variables['Build.Reason'], 'PullRequest')
   env:
-   ACCESS_TOKEN: $(ACCESS_TOKEN)
+    VERIFY_ONLY: 1
+
+- task: ShellScript@2
+  displayName: Transform fabrikate definitions and publish to YAML manifests to repo
+  inputs:
+    scriptPath: build.sh
+  condition: ne(variables['Build.Reason'], 'PullRequest')
+  env:
+    ACCESS_TOKEN_SECRET: $(ACCESS_TOKEN)
+    COMMIT_MESSAGE: $(Build.SourceVersionMessage)
+    MANIFEST_REPO: $(MANIFEST_REPO)
