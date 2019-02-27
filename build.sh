@@ -18,19 +18,19 @@ function init() {
 }
 
 # Initialize Helm
-#function helm_init() {
-#    echo "RUN HELM INIT"
-#    helm init
-#    echo "HELM ADD INCUBATOR"
-#    if [ -z "$HELM_CHART_REPO" ] || [ -z "$HELM_CHART_REPO_URL" ];
-#    then
-#        echo "Using DEFAULT helm repo..."
-#        helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
-#    else
-#        echo "Using DEFINED helm repo..."
-#        helm repo add $HELM_CHART_REPO $HELM_CHART_REPO_URL
-#    fi
-#}
+function helm_init() {
+    echo "RUN HELM INIT"
+    helm init
+    echo "HELM ADD INCUBATOR"
+    if [ -z "$HELM_CHART_REPO" ] || [ -z "$HELM_CHART_REPO_URL" ];
+    then
+        echo "Using DEFAULT helm repo..."
+        helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
+    else
+        echo "Using DEFINED helm repo..."
+        helm repo add $HELM_CHART_REPO $HELM_CHART_REPO_URL
+    fi
+}
 
 # Obtain version for Fabrikate
 # If the version number is not provided, then download the latest
@@ -166,7 +166,7 @@ function unit_test() {
 function verify() {
     echo "Starting verification"
     init
-    #helm_init
+    helm_init
     get_fab_version
     download_fab
     install_fab
