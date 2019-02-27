@@ -80,7 +80,7 @@ function install_fab() {
     # Run this command to make script exit on any failure
     set -e
     export PATH=$PATH:$HOME/fab
-    fab install --verbose
+    fab install
     echo "FAB INSTALL COMPLETED"
 }
 
