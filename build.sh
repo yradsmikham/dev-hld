@@ -1,6 +1,28 @@
 #!/bin/bash
 
+branch_params_json=$(cat <<EOF
+    {
+        "required_status_checks": {
+            "strict": true,
+            "contexts": [
+            "continuous-integration/travis-ci"
+            ]
+        },
+        "enforce_admins": true,
+        "required_pull_request_reviews": {
+            "dismiss_stale_reviews": true,
+            "require_code_owner_reviews": true,
+            "required_approving_review_count": 1
+        },
+        "restrictions": null
+    }
+EOF
+)
+
 function init() {
+    # Install jq
+    sudo apt-get install jq
+
     cp -r * $HOME/
     cd $HOME
 
@@ -21,12 +43,34 @@ function init() {
 
 function branch_policy_verification() {
     echo "Checking branch policy verification"
-    verification=$(curl --user "yradsmikham:$ACCESS_TOKEN_SECRET" \
-    -i -H "Accept: application/vnd.github.luke-cage-preview+json" \
+
+    verification=$(curl -s --user "yradsmikham:$ACCESS_TOKEN_SECRET" \
+    -H "Accept: application/vnd.github.luke-cage-preview+json" \
     -H "Content-Type: application/json" \
     -X GET https://api.github.com/repos/yradsmikham/walmart-hld/branches/master/protection)
 
-    echo ${verification}
+    update_branch_policies=$(curl -s --user "yradsmikham:$ACCESS_TOKEN_SECRET" \
+    -H "Accept: application/vnd.github.luke-cage-preview+json" \
+    -H "Content-Type: application/json" \
+    -X PUT -d $branch_params_json https://api.github.com/repos/yradsmikham/walmart-hld/branches/master/protection)
+
+    verification
+
+    if [[ "echo $verification | jq '.message'" == "Branch not protected" ]]; then
+        echo "Branch is not proctected. Will attempt to update branch policies..."
+        update_branch_policies
+    elif [ -z "echo $verification | jq '.message'" ]; then
+        echo "Checking if branch protection is enabled"
+        if [[ "echo $verification | jq '.required_status_checks.strict'" == "true" ]]; then  
+            echo "Branch policy is ENABLED."
+        else
+            echo "An error has occurred"
+            set -e
+        fi
+    else
+        echo "An error has occurred."
+        set -e
+    fi
 }
 
 # Initialize Helm
