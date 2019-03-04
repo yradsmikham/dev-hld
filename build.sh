@@ -41,7 +41,7 @@ function init() {
 
 # Check for branch policies
 function branch_policy_verification() {
-    echo "BRANCH PROECTION VERFICATION"
+    echo "BRANCH PROTECTION VERFICATION"
 
     verification=$(curl -s --user "yradsmikham:$ACCESS_TOKEN_SECRET" \
     -H "Accept: application/vnd.github.luke-cage-preview+json" \
@@ -52,9 +52,11 @@ function branch_policy_verification() {
     -H "Accept: application/vnd.github.luke-cage-preview+json" \
     -H "Content-Type: application/json" \
     -X PUT -d $branch_params_json https://api.github.com/repos/yradsmikham/walmart-hld/branches/master/protection)
-    
+
+    echo $verification | jq '.message'
+
     if [[ "echo $verification | jq '.message'" == "Branch not protected" ]]; then
-        echo "Branch is not proctected. Will attempt to update branch policies..."
+        echo "Branch is not protected. Will attempt to update branch policies..."
         update_branch_policies
     elif [ -z "echo $verification | jq '.message'" ]; then
         echo "Checking if branch protection is enabled"
