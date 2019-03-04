@@ -21,7 +21,7 @@ function init() {
 
 function branch_policy_verification() {
     echo "Checking branch policy verification"
-    verification=$(curl --user "yradsmikham:6813d13b38ed02d9abff7de697637f93367fb146" \
+    verification=$(curl --user "yradsmikham:$ACCESS_TOKEN_SECRET" \
     -i -H "Accept: application/vnd.github.luke-cage-preview+json" \
     -H "Content-Type: application/json" \
     -X GET https://api.github.com/repos/yradsmikham/walmart-hld/branches/master/protection)
