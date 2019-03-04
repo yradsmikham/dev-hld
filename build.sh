@@ -17,6 +17,18 @@ function init() {
     fi
 }
 
+# Check for branch policies
+
+function branch_policy_verification() {
+    echo "Checking branch policy verification"
+    verification=$(curl --user "yradsmikham:6813d13b38ed02d9abff7de697637f93367fb146" \
+    -i -H "Accept: application/vnd.github.luke-cage-preview+json" \
+    -H "Content-Type: application/json" \
+    -X GET https://api.github.com/repos/yradsmikham/walmart-hld/branches/master/protection)
+
+    echo ${verification}
+}
+
 # Initialize Helm
 function helm_init() {
     echo "RUN HELM INIT"
@@ -166,6 +178,7 @@ function unit_test() {
 function verify() {
     echo "Starting verification"
     init
+    branch_policy_verification
     helm_init
     get_fab_version
     download_fab
