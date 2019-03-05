@@ -222,7 +222,7 @@ function verify() {
     echo "Starting verification"
     init
     #branch_policy_verification
-    #helm_init
+    helm_init
     get_fab_version
     download_fab
     install_fab
