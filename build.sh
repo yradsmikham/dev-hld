@@ -137,6 +137,7 @@ function install_fab() {
     export PATH=$PATH:$HOME/fab
     fab install --verbose
     helm dependency update /home/vsts/infra/components/fabrikate-jaeger/helm_repos/jaeger/incubator/jaeger
+    helm init
     echo "FAB INSTALL COMPLETED"
 }
 
