@@ -133,9 +133,10 @@ function download_fab() {
 # Install Fabrikate
 function install_fab() {
     # Run this command to make script exit on any failure
-    set -e
+    #set -e
     export PATH=$PATH:$HOME/fab
     fab install --verbose
+    helm dependency update /home/vsts/infra/components/fabrikate-jaeger/helm_repos/jaeger/incubator/jaeger
     echo "FAB INSTALL COMPLETED"
 }
 
