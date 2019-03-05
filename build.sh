@@ -21,7 +21,7 @@ EOF
 
 function init() {
     # Install jq
-    sudo apt-get install jq
+    #sudo apt-get install jq
 
     cp -r * $HOME/
     cd $HOME
@@ -135,7 +135,7 @@ function install_fab() {
     # Run this command to make script exit on any failure
     set -e
     export PATH=$PATH:$HOME/fab
-    fab install
+    fab install --verbose
     echo "FAB INSTALL COMPLETED"
 }
 
