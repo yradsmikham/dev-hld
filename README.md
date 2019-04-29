@@ -1,4 +1,4 @@
-# walmart-hld
+# dev-hld
 Source Repository for CI/CD Workflow
 
 This repository contains:
@@ -101,4 +101,4 @@ steps:
 
 ## Notes
 
-The example AKS Manifest Git Repo: https://github.com/yradsmikham/walmart-k8s 
+The example AKS Manifest Git Repo: https://github.com/yradsmikham/dev-k8s 
