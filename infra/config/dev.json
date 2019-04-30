@@ -1,0 +1,24 @@
+{
+    "config": {},
+    "subcomponents": {
+        "prometheus-grafana": {
+            "config": {},
+            "subcomponents": {
+                "prometheus": {
+                    "config": {
+                        "data": {
+                            "persistence": {
+                                "storageClass": "managed-premium"
+                            }
+                        },
+                        "master": {
+                            "persistence": {
+                                "storageClass": "managed-premium"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
